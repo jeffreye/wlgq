@@ -12,10 +12,6 @@ typedef struct
     int position;
 }word_position;
 
-
-
-typedef void (*action)(string str,vector<word_position>* indexes);
-
 class indexer
 {
 public:
@@ -25,7 +21,6 @@ public:
     void add_word(string str,word_position index);
     vector<word_position> *find_word(string str);
 
-    void foreach(action f);
 protected:
 private:
     map<string,vector<word_position>*> m_words;

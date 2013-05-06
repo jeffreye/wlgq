@@ -8,6 +8,7 @@
 
 using namespace boost::algorithm;
 
+static vector<word_position> empty_vector;
 
 quester::quester(query_operator *o)
     :m_operator(o)
@@ -61,10 +62,8 @@ query quester::create_query(string keyword)
     if (vec)
         return query(*vec,keyword);
     else
-    {
-        vector<word_position> emp;
-        return query(emp,keyword);
-    }
+        return query(empty_vector,keyword);
+
 }
 
 void quester::read_documents(vector<path> files)

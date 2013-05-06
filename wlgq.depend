@@ -2337,12 +2337,12 @@
 1367720946 source:/home/jeffreye/wlgq/src/document_indexer.cpp
 	"document_indexer.h"
 
-1367803648 /home/jeffreye/wlgq/include/indexer.h
+1367817249 /home/jeffreye/wlgq/include/indexer.h
 	<map>
 	<string>
 	<vector>
 
-1367803648 source:/home/jeffreye/wlgq/src/indexer.cpp
+1367817288 source:/home/jeffreye/wlgq/src/indexer.cpp
 	"indexer.h"
 
 1367731564 source:/home/jeffreye/wlgq/src/parser.cpp
@@ -2352,7 +2352,7 @@
 	<string>
 	<vector>
 
-1367803648 source:/home/jeffreye/wlgq/src/printer.cpp
+1367816975 source:/home/jeffreye/wlgq/src/printer.cpp
 	"printer.h"
 	<boost/bind.hpp>
 	<algorithm>
@@ -2361,7 +2361,7 @@
 	<iostream>
 	<query.h>
 
-1367803825 source:/home/jeffreye/wlgq/src/quester.cpp
+1367817418 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
 	<algorithm>
 	<sstream>

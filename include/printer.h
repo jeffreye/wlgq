@@ -13,7 +13,7 @@ class printer
         printer();
         virtual ~printer();
 
-        void printAll(query result);
+        void printAll(query &result);
         virtual void print(word_position pos);
         virtual void hightlight(string s,int color,bool bold=false);
     protected:

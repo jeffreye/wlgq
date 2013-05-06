@@ -32,8 +32,8 @@ class query_operator
 public:
     virtual ~query_operator();
 
-    virtual query operator_or(query l,query r);
-    virtual query operator_and(query l,query r);
+    virtual query& operator_or(query &l,query r);
+    virtual query& operator_and(query &l,query r);
 
 };
 

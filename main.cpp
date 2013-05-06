@@ -1,4 +1,3 @@
-#include "sync_query.h"
 #include "quester.h"
 #include "parallel_quester.h"
 #include <string>

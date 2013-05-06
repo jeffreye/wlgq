@@ -1,6 +1,5 @@
 # depslib dependency file v1.0
-1367771101 source:/home/jeffreye/wlgq/main.cpp
-	"sync_query.h"
+1367815799 source:/home/jeffreye/wlgq/main.cpp
 	"quester.h"
 	"parallel_quester.h"
 	<string>
@@ -2358,11 +2357,11 @@
 	<boost/bind.hpp>
 	<algorithm>
 
-1367803648 /home/jeffreye/wlgq/include/printer.h
+1367816033 /home/jeffreye/wlgq/include/printer.h
 	<iostream>
 	<query.h>
 
-1367771246 source:/home/jeffreye/wlgq/src/quester.cpp
+1367803825 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
 	<algorithm>
 	<sstream>
@@ -2379,12 +2378,12 @@
 	"printer.h"
 	"query.h"
 
-1367803648 /home/jeffreye/wlgq/include/query.h
+1367815820 /home/jeffreye/wlgq/include/query.h
 	<string>
 	<indexer.h>
 	"printer.h"
 
-1367803648 source:/home/jeffreye/wlgq/src/query.cpp
+1367815997 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 	<boost/bind.hpp>
@@ -2392,7 +2391,7 @@
 1367746424 source:/home/jeffreye/wlgq/src/sync_query.cpp
 	"sync_query.h"
 
-1367749783 /home/jeffreye/wlgq/include/sync_query.h
+1367803648 /home/jeffreye/wlgq/include/sync_query.h
 	<query.h>
 
 1367803648 source:/home/jeffreye/wlgq/src/parallel_quester.cpp

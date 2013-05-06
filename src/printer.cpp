@@ -12,7 +12,7 @@ printer::~printer()
     //dtor
 }
 
-void printer::printAll(query result)
+void printer::printAll(query &result)
 {
     //now just print raw result
     std::for_each(result.results.begin(),result.results.end(),boost::bind(boost::mem_fn(&printer::print),this,_1));

@@ -2338,12 +2338,12 @@
 1367720946 source:/home/jeffreye/wlgq/src/document_indexer.cpp
 	"document_indexer.h"
 
-1367747177 /home/jeffreye/wlgq/include/indexer.h
+1367803648 /home/jeffreye/wlgq/include/indexer.h
 	<map>
 	<string>
 	<vector>
 
-1367747208 source:/home/jeffreye/wlgq/src/indexer.cpp
+1367803648 source:/home/jeffreye/wlgq/src/indexer.cpp
 	"indexer.h"
 
 1367731564 source:/home/jeffreye/wlgq/src/parser.cpp
@@ -2353,12 +2353,12 @@
 	<string>
 	<vector>
 
-1367761567 source:/home/jeffreye/wlgq/src/printer.cpp
+1367803648 source:/home/jeffreye/wlgq/src/printer.cpp
 	"printer.h"
 	<boost/bind.hpp>
 	<algorithm>
 
-1367761193 /home/jeffreye/wlgq/include/printer.h
+1367803648 /home/jeffreye/wlgq/include/printer.h
 	<iostream>
 	<query.h>
 
@@ -2371,7 +2371,7 @@
 	<boost/algorithm/string/classification.hpp>
 	<boost/bind.hpp>
 
-1367763436 /home/jeffreye/wlgq/include/quester.h
+1367803648 /home/jeffreye/wlgq/include/quester.h
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
@@ -2379,12 +2379,12 @@
 	"printer.h"
 	"query.h"
 
-1367761263 /home/jeffreye/wlgq/include/query.h
+1367803648 /home/jeffreye/wlgq/include/query.h
 	<string>
 	<indexer.h>
 	"printer.h"
 
-1367761455 source:/home/jeffreye/wlgq/src/query.cpp
+1367803648 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 	<boost/bind.hpp>
@@ -2395,13 +2395,13 @@
 1367749783 /home/jeffreye/wlgq/include/sync_query.h
 	<query.h>
 
-1367763837 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
+1367803648 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
 	"parallel_quester.h"
 	<boost/thread/thread.hpp>
 	<boost/bind.hpp>
 	<boost/filesystem.hpp>
 
-1367771120 /home/jeffreye/wlgq/include/parallel_quester.h
+1367803648 /home/jeffreye/wlgq/include/parallel_quester.h
 	<quester.h>
 	<boost/filesystem.hpp>
 

@@ -87,7 +87,8 @@ void quester::read_single_document(path filename)
         pos.document_name=filename.filename().generic_string();
         pos.position=s.tellg();
 
-//        m_indexer.add_word(str,pos);
+        //this will occur a error in multithread mode
+        m_indexer.add_word(str,pos);
 //        cout<<str<<endl;
 
     }

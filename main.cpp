@@ -25,17 +25,17 @@ int main()
     ios::sync_with_stdio(false);
 
     query_operator *o=new query_operator;
-    parallel_quester q(dynamic_cast<query_operator*>(o));
-//    quester q(dynamic_cast<query_operator*>(o));
+//    parallel_quester q(dynamic_cast<query_operator*>(o));
+    quester q(dynamic_cast<query_operator*>(o));
 
     q.read_documents(get_files());
 
     string query;
-//    cout<<"Welcome to our search engine."<<endl;
-//    cout<<"Please input the text you want to search"<<endl;
-//    getline(cin,query);
+    cout<<"Welcome to our search engine."<<endl;
+    cout<<"Please input the text you want to search"<<endl;
+    getline(cin,query);
 
-//    q.execute(query);//query once and exit
+    q.execute(query);//query once and exit
 
     delete o;
     return 0;

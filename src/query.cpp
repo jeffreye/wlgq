@@ -1,6 +1,5 @@
 #include "query.h"
 #include <algorithm>
-#include <boost/bind.hpp>
 
 query::query()
     :words("NONE")

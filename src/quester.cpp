@@ -77,7 +77,35 @@ void quester::read_single_document(path filename)
 {
     boost::filesystem::ifstream s;
     string str;
+    
+    
+    
+     //modify by qsz13-------------------------------------------------
+        for(string::iterator it = str.begin(); it != str.end();)
+    {
+        if(ispunct(*it))
+        {
+            if((*it == '-') && str.size() != 1)
+            {
+                it++;
+            }
+            else
+            {
+                it = str.erase(it);
+            }
+        }
+        else
+        {
+            *it = tolower(*it);
+            it++;
+        }
+    }
 
+     //----------------------------------------------------------------------
+    
+    
+    
+    
     s.open(filename);
     while (!s.eof())
     {

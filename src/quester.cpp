@@ -8,9 +8,7 @@
 
 using namespace boost::algorithm;
 
-static vector<word_position> empty_vector;
-
-quester::quester(query_operator *o)
+quester::quester(query_operator o)
     :m_operator(o)
 {
 
@@ -31,7 +29,7 @@ void quester::execute(string queryString)
     s.str(queryString);
 
     string temp;
-        s>>temp;
+    s>>temp;
 
     query result=create_query(temp);
     while (!s.eof())
@@ -40,16 +38,16 @@ void quester::execute(string queryString)
         if (temp=="AND")
         {
             s>>temp;
-            result=m_operator->operator_and(result,create_query(temp));
+            result=m_operator.operator_and(result,create_query(temp));
         }
         else if (temp=="OR")
         {
             s>>temp;
-            result=m_operator->operator_or(result,create_query(temp));
+            result=m_operator.operator_or(result,create_query(temp));
         }
         else
         {
-            result=m_operator->operator_and(result,create_query(temp));
+            result=m_operator.operator_and(result,create_query(temp));
         }
     }
 
@@ -58,12 +56,7 @@ void quester::execute(string queryString)
 
 query quester::create_query(string keyword)
 {
-    vector<word_position> *vec=m_indexer.find_word(keyword);
-    if (vec)
-        return query(*vec,keyword);
-    else
-        return query(empty_vector,keyword);
-
+        return query(m_indexer.find_word(keyword),keyword);
 }
 
 void quester::read_documents(vector<path> files)
@@ -76,19 +69,14 @@ void quester::read_documents(vector<path> files)
 void quester::read_single_document(path filename)
 {
     boost::filesystem::ifstream s;
-    string str;
+    string str,doc=filename.filename().generic_string();
 
     s.open(filename);
     while (!s.eof())
     {
         s>>str;
-        word_position pos;
-        pos.document_name=filename.filename().generic_string();
-        pos.position=s.tellg();
-
         //this will occur a error in multithread mode
-        m_indexer.add_word(str,pos);
-//        cout<<str<<endl;
+        m_indexer.add_word(str,doc,s.tellg());
 
     }
     s.close();

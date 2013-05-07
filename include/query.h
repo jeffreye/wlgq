@@ -16,12 +16,12 @@ public:
     friend class printer;
 
     query();
-    query(vector<word_position> &res,string w);
+    query(vector<word_position*> &res,string w);
 
     string get_query_words();
     virtual ~query();
 protected:
-    vector<word_position> results;
+    vector<word_position*> results;
     string words;
 private:
 };

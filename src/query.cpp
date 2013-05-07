@@ -8,7 +8,7 @@ query::query()
 
 }
 
-query::query(vector<word_position> &res,string w)
+query::query(vector<word_position*> &res,string w)
     :results(res),words(w)
 {
 
@@ -21,18 +21,17 @@ string query::get_query_words()
 
 query::~query()
 {
-    cout<<"query:"<<words<<" destructed"<<endl;
-//    delete results;
+
 }
 
 query &query_operator::operator_and(query &l, query r)
 {
-    vector<word_position> results;
-    for (vector<word_position>::iterator lit=l.results.begin(); lit!=l.results.end(); ++lit )
+    vector<word_position*> results;
+    for (vector<word_position*>::iterator lit=l.results.begin(); lit!=l.results.end(); ++lit )
     {
-        for (vector<word_position>::iterator rit=r.results.begin(); rit!=r.results.end(); ++rit )
+        for (vector<word_position*>::iterator rit=r.results.begin(); rit!=r.results.end(); ++rit )
         {
-            if (lit->document_name == rit->document_name)
+            if ((*lit)->document_name == (*rit)->document_name)
             {
                 results.push_back(*lit);
                 results.push_back(*rit);

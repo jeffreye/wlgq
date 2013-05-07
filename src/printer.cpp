@@ -20,9 +20,9 @@ void printer::printAll(query &result)
     cout<<"AMOUNT:"<<result.results.size()<<endl;
 }
 
-void printer::print(word_position pos)
+void printer::print(word_position *pos)
 {
-    cout<<"File:"<<pos.document_name<<"\t\t\tPosition:"<<pos.position<<endl;
+    cout<<"File:"<<pos->document_name<<"\t\t\tPosition:"<<pos->position<<endl;
 }
 
 

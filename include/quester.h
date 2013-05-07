@@ -14,7 +14,7 @@ using namespace boost::filesystem;
 class quester
 {
     public:
-        quester(query_operator *o);
+        quester(query_operator o);
         virtual ~quester();
 
         virtual void read_documents(vector<path> files);
@@ -27,7 +27,7 @@ class quester
         indexer m_indexer;
     private:
         printer m_printer;
-        query_operator *m_operator;
+        query_operator m_operator;
 };
 
 #endif // QUESTER_H

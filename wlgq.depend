@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1367815799 source:/home/jeffreye/wlgq/main.cpp
+1367932631 source:/home/jeffreye/wlgq/main.cpp
 	"quester.h"
 	"parallel_quester.h"
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
+	<boost/date_time/gregorian/gregorian.hpp>
+	<boost/date_time/posix_time/posix_time.hpp>
 
 1355236946 /home/jeffreye/boost/boost/filesystem.hpp
 	<boost/filesystem/config.hpp>
@@ -2337,13 +2339,14 @@
 1367720946 source:/home/jeffreye/wlgq/src/document_indexer.cpp
 	"document_indexer.h"
 
-1367817249 /home/jeffreye/wlgq/include/indexer.h
-	<map>
+1367929871 /home/jeffreye/wlgq/include/indexer.h
+	<unordered_map>
 	<string>
 	<vector>
 
-1367817288 source:/home/jeffreye/wlgq/src/indexer.cpp
+1367932736 source:/home/jeffreye/wlgq/src/indexer.cpp
 	"indexer.h"
+	<algorithm>
 
 1367731564 source:/home/jeffreye/wlgq/src/parser.cpp
 	"parser.h"
@@ -2352,16 +2355,16 @@
 	<string>
 	<vector>
 
-1367816975 source:/home/jeffreye/wlgq/src/printer.cpp
+1367931814 source:/home/jeffreye/wlgq/src/printer.cpp
 	"printer.h"
 	<boost/bind.hpp>
 	<algorithm>
 
-1367816033 /home/jeffreye/wlgq/include/printer.h
+1367931824 /home/jeffreye/wlgq/include/printer.h
 	<iostream>
 	<query.h>
 
-1367817418 source:/home/jeffreye/wlgq/src/quester.cpp
+1367931966 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
 	<algorithm>
 	<sstream>
@@ -2370,7 +2373,7 @@
 	<boost/algorithm/string/classification.hpp>
 	<boost/bind.hpp>
 
-1367803648 /home/jeffreye/wlgq/include/quester.h
+1367930516 /home/jeffreye/wlgq/include/quester.h
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
@@ -2378,12 +2381,12 @@
 	"printer.h"
 	"query.h"
 
-1367815820 /home/jeffreye/wlgq/include/query.h
+1367931751 /home/jeffreye/wlgq/include/query.h
 	<string>
 	<indexer.h>
 	"printer.h"
 
-1367815997 source:/home/jeffreye/wlgq/src/query.cpp
+1367931855 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 	<boost/bind.hpp>
@@ -2394,13 +2397,16 @@
 1367803648 /home/jeffreye/wlgq/include/sync_query.h
 	<query.h>
 
-1367803648 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
+1367931636 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
 	"parallel_quester.h"
 	<boost/thread/thread.hpp>
 	<boost/bind.hpp>
 	<boost/filesystem.hpp>
+	<boost/interprocess/sync/interprocess_semaphore.hpp>
 
-1367803648 /home/jeffreye/wlgq/include/parallel_quester.h
+1367931671 /home/jeffreye/wlgq/include/parallel_quester.h
 	<quester.h>
 	<boost/filesystem.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/mutex.hpp>
 

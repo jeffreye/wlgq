@@ -38,9 +38,6 @@ void read_documents(quester &quester,vector<path> files)
     cout<<"time_elapse :"<<milliseconds<<"ms"<<endl;
 }
 
-class test:public query_operator {};;
-
-
 int main()
 {
 //    ios::sync_with_stdio(false);

@@ -24,6 +24,7 @@ class quester
     protected:
         virtual query create_query(string keyword);
         void read_single_document(path filename);
+        void process(string str,string doc,int pos);
         indexer m_indexer;
     private:
         printer m_printer;

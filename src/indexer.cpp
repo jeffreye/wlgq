@@ -23,12 +23,12 @@ indexer::~indexer()
 
 void indexer::add_word(string str, string filename, int pos)
 {
-    m_words[str].emplace_back(new word_position{filename,pos});
+    m_words[str].push_back(new word_position{filename,pos});
 }
 
 void indexer::add_word(string str, word_position* pos)
 {
-    m_words[str].emplace_back(pos);
+    m_words[str].push_back(pos);
 }
 
 vector<word_position*> &indexer::find_word(string str)

@@ -56,7 +56,7 @@ void quester::execute(string queryString)
 
 query quester::create_query(string keyword)
 {
-        return query(m_indexer.find_word(keyword),keyword);
+    return query(m_indexer.find_word(keyword),keyword);
 }
 
 void quester::read_documents(vector<path> files)
@@ -74,10 +74,37 @@ void quester::read_single_document(path filename)
     s.open(filename);
     while (!s.eof())
     {
+        int pos=s.tellg();
         s>>str;
-        //this will occur a error in multithread mode
-        m_indexer.add_word(str,doc,s.tellg());
-
+        process(str,doc,pos);
     }
     s.close();
 }
+
+void quester::process(string str,string doc,int pos)
+{
+    for(string::iterator it = str.begin(); it != str.end();)
+    {
+        if(ispunct(*it))
+        {
+            if((*it == '-') && str.size() != 1)
+            {
+                it++;
+            }
+            else
+            {
+                it = str.erase(it);
+            }
+        }
+        else
+        {
+            *it = tolower(*it);
+            it++;
+        }
+    }
+
+    //this will occur a error in multithread mode
+    m_indexer.add_word(str,doc,pos);
+}
+
+

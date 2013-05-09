@@ -7,6 +7,8 @@
 #include "indexer.h"
 #include "printer.h"
 #include "query.h"
+#include "reader.h"
+#include "types.h"
 
 using namespace std;
 using namespace boost::filesystem;
@@ -23,8 +25,8 @@ class quester
 
     protected:
         virtual query create_query(string keyword);
-        void read_single_document(path filename);
-        void process(string str,string doc,int pos);
+        virtual void read_single_document(path filename);
+        void process(token &t);
         indexer m_indexer;
     private:
         printer m_printer;

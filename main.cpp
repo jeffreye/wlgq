@@ -1,5 +1,6 @@
 #include "quester.h"
 #include "parallel_quester.h"
+#include "query.h"
 #include <string>
 #include <vector>
 #include <boost/filesystem.hpp>
@@ -14,20 +15,33 @@ inline vector<path> get_files(path p)
 {
 
     vector<path> paths;
-    copy(directory_iterator(p),directory_iterator(),back_inserter(paths));
-    //TODO:filter some unusable files
+    //modified by qsz ---------------------------------------------------------------
+    //copy(directory_iterator(p),directory_iterator(),back_inserter(paths));
+
+    boost::filesystem::recursive_directory_iterator iter(p);
+    boost::filesystem::recursive_directory_iterator end;
+    for (; iter != end; ++iter)
+    {
+        if(boost::filesystem::is_regular_file(*iter))
+        {
+            paths.push_back(iter->path());
+
+        }
+    }
+//------------------------------------------------------------------------------------------
 
     return paths;
 }
 
-void read_documents(quester &quester,vector<path> files)
+template<typename Function>
+void benchmark(Function f)
 {
     boost::posix_time::ptime time1,time_now;
     boost::posix_time::millisec_posix_time_system_config::time_duration_type time_elapse;
 
     time1 = boost::posix_time::microsec_clock::universal_time();
 
-    quester.read_documents(files);
+    f();
 
     time_now = boost::posix_time::microsec_clock::universal_time();
 
@@ -40,8 +54,9 @@ void read_documents(quester &quester,vector<path> files)
 
 int main()
 {
-//    ios::sync_with_stdio(false);
+//  ios::sync_with_stdio(false);
     query_operator o;
+//    parallel_quester q(o);
     quester q(o);
 
     cout<<"Input the datas' path(default:<current path>/data):";
@@ -60,7 +75,7 @@ int main()
     }
 
 #if DEBUG
-    read_documents(q,get_files(p));
+    benchmark([&q,&p]()mutable {q.read_documents(get_files(p));});
 #else
     q.read_documents(get_files(p));
 #endif

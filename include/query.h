@@ -30,6 +30,7 @@ private:
 class query_operator
 {
 public:
+    query_operator();
     virtual ~query_operator();
 
     virtual query& operator_or(query &l,query r);

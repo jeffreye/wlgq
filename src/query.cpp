@@ -23,6 +23,11 @@ query::~query()
 
 }
 
+query_operator::query_operator()
+{
+
+}
+
 query &query_operator::operator_and(query &l, query r)
 {
     vector<word_position*> results;
@@ -30,7 +35,7 @@ query &query_operator::operator_and(query &l, query r)
     {
         for (vector<word_position*>::iterator rit=r.results.begin(); rit!=r.results.end(); ++rit )
         {
-            if ((*lit)->document_name == (*rit)->document_name)
+            if ((*lit)->document == (*rit)->document)
             {
                 results.push_back(*lit);
                 results.push_back(*rit);

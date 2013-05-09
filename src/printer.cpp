@@ -22,7 +22,7 @@ void printer::printAll(query &result)
 
 void printer::print(word_position *pos)
 {
-    cout<<"File:"<<pos->document_name<<"\t\t\tPosition:"<<pos->position<<endl;
+    cout<<"File:"<<pos->document<<"\t\t\tPosition:"<<pos->position<<endl;
 }
 
 

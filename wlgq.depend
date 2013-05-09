@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1367936696 source:/home/jeffreye/wlgq/main.cpp
+1368115631 source:/home/jeffreye/wlgq/main.cpp
 	"quester.h"
 	"parallel_quester.h"
+	"query.h"
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
@@ -2339,12 +2340,14 @@
 1367720946 source:/home/jeffreye/wlgq/src/document_indexer.cpp
 	"document_indexer.h"
 
-1367929871 /home/jeffreye/wlgq/include/indexer.h
+1368114600 /home/jeffreye/wlgq/include/indexer.h
 	<unordered_map>
 	<string>
 	<vector>
+	<unordered_set>
+	"types.h"
 
-1367936614 source:/home/jeffreye/wlgq/src/indexer.cpp
+1368114457 source:/home/jeffreye/wlgq/src/indexer.cpp
 	"indexer.h"
 	<algorithm>
 
@@ -2355,7 +2358,7 @@
 	<string>
 	<vector>
 
-1367931814 source:/home/jeffreye/wlgq/src/printer.cpp
+1368076568 source:/home/jeffreye/wlgq/src/printer.cpp
 	"printer.h"
 	<boost/bind.hpp>
 	<algorithm>
@@ -2364,29 +2367,30 @@
 	<iostream>
 	<query.h>
 
-1367937076 source:/home/jeffreye/wlgq/src/quester.cpp
+1368113657 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
 	<algorithm>
 	<sstream>
-	<boost/algorithm/string/split.hpp>
 	<boost/filesystem/fstream.hpp>
 	<boost/algorithm/string/classification.hpp>
 	<boost/bind.hpp>
 
-1367937085 /home/jeffreye/wlgq/include/quester.h
+1368114716 /home/jeffreye/wlgq/include/quester.h
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
 	"indexer.h"
 	"printer.h"
 	"query.h"
+	"reader.h"
+	"types.h"
 
-1367931751 /home/jeffreye/wlgq/include/query.h
+1367941788 /home/jeffreye/wlgq/include/query.h
 	<string>
 	<indexer.h>
 	"printer.h"
 
-1367934413 source:/home/jeffreye/wlgq/src/query.cpp
+1368076581 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 
@@ -2396,16 +2400,32 @@
 1367803648 /home/jeffreye/wlgq/include/sync_query.h
 	<query.h>
 
-1367931636 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
+1368115935 source:/home/jeffreye/wlgq/src/parallel_quester.cpp
 	"parallel_quester.h"
 	<boost/thread/thread.hpp>
 	<boost/bind.hpp>
 	<boost/filesystem.hpp>
-	<boost/interprocess/sync/interprocess_semaphore.hpp>
+	<boost/filesystem/fstream.hpp>
+	<iostream>
 
-1367931671 /home/jeffreye/wlgq/include/parallel_quester.h
-	<quester.h>
+1368116125 /home/jeffreye/wlgq/include/parallel_quester.h
+	"quester.h"
+	"reader.h"
 	<boost/filesystem.hpp>
-	<boost/thread/condition.hpp>
-	<boost/thread/mutex.hpp>
+	<boost/lockfree/spsc_queue.hpp>
+	<boost/atomic.hpp>
+	<string>
+	<unordered_set>
+
+1368068725 source:/home/jeffreye/wlgq/src/reader.cpp
+	"reader.h"
+
+1368114757 /home/jeffreye/wlgq/include/reader.h
+	<string>
+	<iostream>
+	"indexer.h"
+	"types.h"
+
+1368114621 /home/jeffreye/wlgq/include/types.h
+	<string>
 

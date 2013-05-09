@@ -1,7 +1,6 @@
 #include "quester.h"
 #include <algorithm>
 #include <sstream>
-#include <boost/algorithm/string/split.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/bind.hpp>
@@ -16,7 +15,7 @@ quester::quester(query_operator o)
 
 quester::~quester()
 {
-    //dtor
+
 }
 
 void quester::execute(string queryString)
@@ -61,50 +60,29 @@ query quester::create_query(string keyword)
 
 void quester::read_documents(vector<path> files)
 {
-    //TODO:use multithread
     for_each(files.begin(),files.end(),
-             boost::bind(boost::mem_fn(&quester::read_single_document),this,_1));
+             boost::bind(&quester::read_single_document,this,_1));
 }
 
 void quester::read_single_document(path filename)
 {
-    boost::filesystem::ifstream s;
-    string str,doc=filename.filename().generic_string();
+    const string &doc=m_indexer.get_document_id(filename.generic_string());
+    reader<boost::filesystem::ifstream> reader(doc);
+    reader.base_stream.open(filename);
 
-    s.open(filename);
-    while (!s.eof())
+    token t;
+    while (!reader.eof())
     {
-        int pos=s.tellg();
-        s>>str;
-        process(str,doc,pos);
+        reader>>t;
+        process(t);
+        m_indexer.add_word(t.word,t.pos);
     }
-    s.close();
+    reader.base_stream.close();
 }
 
-void quester::process(string str,string doc,int pos)
+void quester::process(token &t)
 {
-    for(string::iterator it = str.begin(); it != str.end();)
-    {
-        if(ispunct(*it))
-        {
-            if((*it == '-') && str.size() != 1)
-            {
-                it++;
-            }
-            else
-            {
-                it = str.erase(it);
-            }
-        }
-        else
-        {
-            *it = tolower(*it);
-            it++;
-        }
-    }
-
-    //this will occur a error in multithread mode
-    m_indexer.add_word(str,doc,pos);
+    //process plural forms ,etc....
 }
 
 

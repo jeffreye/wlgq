@@ -23,23 +23,27 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-g" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-pg" />
 			<Add option="-fexceptions" />
 			<Add option="-pthread" />
 			<Add directory="/home/jeffreye/wlgq/include" />
 		</Compiler>
+		<Linker>
+			<Add option="-pg" />
+		</Linker>
 		<Unit filename="include/indexer.h" />
 		<Unit filename="include/parallel_quester.h" />
 		<Unit filename="include/printer.h" />
 		<Unit filename="include/query.h" />
 		<Unit filename="include/quester.h" />
+		<Unit filename="include/reader.h" />
+		<Unit filename="include/types.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/indexer.cpp" />
 		<Unit filename="src/parallel_quester.cpp" />

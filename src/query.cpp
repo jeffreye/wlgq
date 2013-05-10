@@ -30,7 +30,7 @@ query_operator::query_operator()
 
 query &query_operator::operator_and(query &l, query r)
 {
-    vector<word_position*> results;
+    vector<word_position*> &results=l.results;
     for (vector<word_position*>::iterator lit=l.results.begin(); lit!=l.results.end(); ++lit )
     {
         for (vector<word_position*>::iterator rit=r.results.begin(); rit!=r.results.end(); ++rit )
@@ -45,13 +45,13 @@ query &query_operator::operator_and(query &l, query r)
     }
 
     l.words=l.words+" AND "+r.words;
-    l.results=results;
     return l;
 }
 
 query &query_operator::operator_or(query &l, query r)
 {
     copy(r.results.begin(),r.results.end(),back_inserter(l.results));
+    l.words=l.words+" OR "+r.words;
     return l;
 }
 

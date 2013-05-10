@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1368115631 source:/home/jeffreye/wlgq/main.cpp
+1368201371 source:/home/jeffreye/wlgq/main.cpp
 	"quester.h"
 	"parallel_quester.h"
 	"query.h"
@@ -2367,17 +2367,19 @@
 	<iostream>
 	<query.h>
 
-1368113657 source:/home/jeffreye/wlgq/src/quester.cpp
+1368200936 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
 	<algorithm>
+	<string>
 	<sstream>
 	<boost/filesystem/fstream.hpp>
-	<boost/algorithm/string/classification.hpp>
+	<boost/algorithm/string.hpp>
 	<boost/bind.hpp>
 
-1368114716 /home/jeffreye/wlgq/include/quester.h
+1368201694 /home/jeffreye/wlgq/include/quester.h
 	<string>
 	<vector>
+	<unordered_set>
 	<boost/filesystem.hpp>
 	"indexer.h"
 	"printer.h"
@@ -2390,7 +2392,7 @@
 	<indexer.h>
 	"printer.h"
 
-1368076581 source:/home/jeffreye/wlgq/src/query.cpp
+1368197927 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 
@@ -2420,7 +2422,7 @@
 1368068725 source:/home/jeffreye/wlgq/src/reader.cpp
 	"reader.h"
 
-1368114757 /home/jeffreye/wlgq/include/reader.h
+1368163547 /home/jeffreye/wlgq/include/reader.h
 	<string>
 	<iostream>
 	"indexer.h"

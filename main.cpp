@@ -56,8 +56,8 @@ int main()
 {
 //  ios::sync_with_stdio(false);
     query_operator o;
-//    parallel_quester q(o);
     quester q(o);
+
 
     cout<<"Input the datas' path(default:<current path>/data):";
     string data_path;
@@ -75,8 +75,13 @@ int main()
     }
 
 #if DEBUG
-    benchmark([&q,&p]()mutable {q.read_documents(get_files(p));});
+    benchmark([&q,&p]()mutable
+    {
+        q.read_stopwords("stopword.txt");
+        q.read_documents(get_files(p));
+    });
 #else
+    q.read_stopwords("stopword.txt");
     q.read_documents(get_files(p));
 #endif
 

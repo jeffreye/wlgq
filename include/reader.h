@@ -17,14 +17,8 @@ read_word(basic_istream<_CharT, _Traits>& __is,
     basic_streambuf<_CharT, _Traits>* __buf = __is.rdbuf();
 
     __s.clear();
-    size_t __n = __is.width(0);
-    if (__n == 0)
-        __n = static_cast<size_t>(-1);
-    else
-        __s.reserve(__n);
 
-
-    while (__n-- > 0)
+    while (true)
     {
         typename _Traits::int_type __c1 = __buf->sbumpc();
         if (_Traits::eq_int_type(__c1, _Traits::eof()))
@@ -37,9 +31,7 @@ read_word(basic_istream<_CharT, _Traits>& __is,
             _CharT __c = _Traits::to_char_type(__c1);
 
             if (!isalnum(__c))
-            {
                 break;
-            }
             else
                 __s.push_back(tolower(__c));
         }
@@ -49,9 +41,12 @@ read_word(basic_istream<_CharT, _Traits>& __is,
     return __is;
 }
 
+
+
 template <typename StreamType >
 class reader
 {
+
 public:
     StreamType base_stream;
 
@@ -73,13 +68,13 @@ public:
     virtual void read_token(token &t)
     {
         t.pos=new word_position {doc};
-
         do
         {
             t.pos->position=base_stream.tellg();
             read_word(base_stream,t.word);
+
         }
-        while(t.word.length()==0&&!base_stream.eof());
+        while(t.word.empty()&&!base_stream.eof());
     }
 protected:
     const string &doc;

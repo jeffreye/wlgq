@@ -1,8 +1,9 @@
 #include "quester.h"
 #include <algorithm>
+#include <string>
 #include <sstream>
 #include <boost/filesystem/fstream.hpp>
-#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string.hpp>
 #include <boost/bind.hpp>
 
 using namespace boost::algorithm;
@@ -18,6 +19,11 @@ quester::~quester()
 
 }
 
+bool quester::is_excluded(string word)
+{
+    return stopwords.count(word);
+}
+
 void quester::execute(string queryString)
 {
     //parse the query and
@@ -31,9 +37,8 @@ void quester::execute(string queryString)
     s>>temp;
 
     query result=create_query(temp);
-    while (!s.eof())
+    while (s>>temp)
     {
-        s>>temp;
         if (temp=="AND")
         {
             s>>temp;
@@ -64,6 +69,20 @@ void quester::read_documents(vector<path> files)
              boost::bind(&quester::read_single_document,this,_1));
 }
 
+void quester::read_stopwords(path filename)
+{
+    boost::filesystem::ifstream fin;
+    fin.open(filename);
+
+    string t;
+    while (!fin.eof())
+    {
+        fin>>t;
+        split(stopwords,t,is_any_of(","));//another way:boost tokenizer
+    }
+    fin.close();
+}
+
 void quester::read_single_document(path filename)
 {
     const string &doc=m_indexer.get_document_id(filename.generic_string());
@@ -74,6 +93,8 @@ void quester::read_single_document(path filename)
     while (!reader.eof())
     {
         reader>>t;
+        if (is_excluded(t.word))
+            continue;
         process(t);
         m_indexer.add_word(t.word,t.pos);
     }

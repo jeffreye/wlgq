@@ -1,4 +1,5 @@
 #include "quester.h"
+#include "stopwatch.h"
 #include <algorithm>
 #include <string>
 #include <sstream>
@@ -30,6 +31,11 @@ void quester::execute(string queryString)
     //process operator of AND,OR,etc...
 
     //simple implement
+    //some useful resource:boost::Xpressive ,Lucene(org.apache.lucene.queryparser.classic.QueryParser?),Lemur
+
+    stopwatch watch;
+    watch.start();
+
     stringstream s;
     s.str(queryString);
 
@@ -55,11 +61,15 @@ void quester::execute(string queryString)
         }
     }
 
+    watch.stop();
     m_printer.printAll(result);
+    cout<<"("<<watch.get_elapse_milliseconds()<<"ms)"<<endl;
 }
 
 query quester::create_query(string keyword)
 {
+    if (is_excluded(keyword))
+        return query();
     return query(m_indexer.find_word(keyword),keyword);
 }
 

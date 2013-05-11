@@ -4,8 +4,7 @@
 #include <string>
 #include <vector>
 #include <boost/filesystem.hpp>
-#include <boost/date_time/gregorian/gregorian.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include "stopwatch.h"
 #define BOOST_DATE_TIME_SOURCE
 
 using namespace std;
@@ -36,19 +35,12 @@ inline vector<path> get_files(path p)
 template<typename Function>
 void benchmark(Function f)
 {
-    boost::posix_time::ptime time1,time_now;
-    boost::posix_time::millisec_posix_time_system_config::time_duration_type time_elapse;
-
-    time1 = boost::posix_time::microsec_clock::universal_time();
-
+    stopwatch watch;
+    watch.start();
     f();
+    watch.stop();
 
-    time_now = boost::posix_time::microsec_clock::universal_time();
-
-    time_elapse = time_now - time1;
-
-
-    long milliseconds = time_elapse.total_milliseconds();
+    long milliseconds = watch.get_elapse_milliseconds();
     cout<<"time_elapse :"<<milliseconds<<"ms"<<endl;
 }
 

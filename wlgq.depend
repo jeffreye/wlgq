@@ -1,13 +1,12 @@
 # depslib dependency file v1.0
-1368201371 source:/home/jeffreye/wlgq/main.cpp
+1368248633 source:/home/jeffreye/wlgq/main.cpp
 	"quester.h"
 	"parallel_quester.h"
 	"query.h"
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
-	<boost/date_time/gregorian/gregorian.hpp>
-	<boost/date_time/posix_time/posix_time.hpp>
+	"stopwatch.h"
 
 1355236946 /home/jeffreye/boost/boost/filesystem.hpp
 	<boost/filesystem/config.hpp>
@@ -2358,17 +2357,21 @@
 	<string>
 	<vector>
 
-1368076568 source:/home/jeffreye/wlgq/src/printer.cpp
+1368246123 source:/home/jeffreye/wlgq/src/printer.cpp
 	"printer.h"
 	<boost/bind.hpp>
 	<algorithm>
+	<fstream>
+	<iostream>
+	<string>
 
 1367931824 /home/jeffreye/wlgq/include/printer.h
 	<iostream>
 	<query.h>
 
-1368200936 source:/home/jeffreye/wlgq/src/quester.cpp
+1368249068 source:/home/jeffreye/wlgq/src/quester.cpp
 	"quester.h"
+	"stopwatch.h"
 	<algorithm>
 	<string>
 	<sstream>
@@ -2387,12 +2390,13 @@
 	"reader.h"
 	"types.h"
 
-1367941788 /home/jeffreye/wlgq/include/query.h
+1368244355 /home/jeffreye/wlgq/include/query.h
 	<string>
 	<indexer.h>
-	"printer.h"
+	<algorithm>
+	<map>
 
-1368197927 source:/home/jeffreye/wlgq/src/query.cpp
+1368248187 source:/home/jeffreye/wlgq/src/query.cpp
 	"query.h"
 	<algorithm>
 
@@ -2430,4 +2434,11 @@
 
 1368114621 /home/jeffreye/wlgq/include/types.h
 	<string>
+
+1368248578 /home/jeffreye/wlgq/include/stopwatch.h
+	<boost/date_time/gregorian/gregorian.hpp>
+	<boost/date_time/posix_time/posix_time.hpp>
+
+1368248583 source:/home/jeffreye/wlgq/src/stopwatch.cpp
+	"stopwatch.h"
 

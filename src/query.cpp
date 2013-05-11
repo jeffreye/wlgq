@@ -8,9 +8,9 @@ query::query()
 }
 
 query::query(vector<word_position*> &res,string w)
-    :results(res),words(w)
+    :words(w)
 {
-
+    std::for_each(res.begin(),res.end(),[this](word_position *p) mutable {this->results.insert(make_pair(0,p));});
 }
 
 string query::get_query_words()
@@ -30,27 +30,40 @@ query_operator::query_operator()
 
 query &query_operator::operator_and(query &l, query r)
 {
-    vector<word_position*> &results=l.results;
-    for (vector<word_position*>::iterator lit=l.results.begin(); lit!=l.results.end(); ++lit )
+    if (l.words=="NONE")
+        return l=r;
+    else if(r.words=="NONE")
+        return l;
+
+    //todo:order the results and optimize performance
+    multimap<int,word_position*> results;
+    for (auto lit=l.results.begin(); lit!=l.results.end(); ++lit )
     {
-        for (vector<word_position*>::iterator rit=r.results.begin(); rit!=r.results.end(); ++rit )
+        word_position *left=lit->second;
+        for (auto rit=r.results.begin(); rit!=r.results.end(); ++rit )
         {
-            if ((*lit)->document == (*rit)->document)
+            word_position *right=rit->second;
+            if (left->document==right->document)
             {
-                results.push_back(*lit);
-                results.push_back(*rit);
-                //do this temporarily....
+                //insert the former postion
+                //results will be ordered by abs(delta)
+                //(but it seems some bugs in here...)
+                auto delta=left->position-right->position;
+                if (delta<0)
+                    results.insert(make_pair(-delta,left));
+                else
+                    results.insert(make_pair(delta,right));
             }
         }
     }
-
+    l.results=results;
     l.words=l.words+" AND "+r.words;
     return l;
 }
 
 query &query_operator::operator_or(query &l, query r)
 {
-    copy(r.results.begin(),r.results.end(),back_inserter(l.results));
+    for_each(r.results.begin(),r.results.end(),[l](pair<int,word_position*> p) mutable {l.results.insert(p);});
     l.words=l.words+" OR "+r.words;
     return l;
 }

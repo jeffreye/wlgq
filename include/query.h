@@ -3,25 +3,32 @@
 
 #include <string>
 #include <indexer.h>
-#include "printer.h"
+#include <algorithm>
+#include <map>
 
 using namespace std;
-
-class printer;
 
 class query
 {
 public:
     friend class query_operator;
-    friend class printer;
 
     query();
     query(vector<word_position*> &res,string w);
 
     string get_query_words();
+
+    int size(){return results.size();}
+
+    template<typename Function>
+    void for_each(Function f)
+    {
+        std::for_each(results.begin(),results.end(),[f](pair<int,word_position*> p){f(p.second);});
+    }
     virtual ~query();
 protected:
-    vector<word_position*> results;
+//    vector<word_position*> results;
+    multimap<int,word_position*> results;
     string words;
 private:
 };

@@ -23,7 +23,7 @@ public:
     template<typename Function>
     void for_each(Function f)
     {
-        std::for_each(results.begin(),results.end(),[f](pair<int,word_position*> p){f(p.second);});
+        std::for_each(results.begin(),results.end(),[f](pair<int,word_position*> p) mutable {f(p.second);});
     }
     virtual ~query();
 protected:

@@ -14,6 +14,7 @@ public:
     indexer();
     virtual ~indexer();
     const string &get_document_id(string doc);
+    const unordered_set<string> &get_documents(){return docs;}
 
 
     /** \brief  add word and its position(ATTENTION:this member function is not thread-safe)

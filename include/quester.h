@@ -35,6 +35,8 @@ class quester
         unordered_set<string> stopwords;
         printer m_printer;
         query_operator m_operator;
+
+        unordered_map<string,unordered_map<string,int> > word_statistics;
 };
 
 #endif // QUESTER_H

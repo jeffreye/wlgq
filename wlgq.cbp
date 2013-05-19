@@ -44,6 +44,7 @@
 		<Unit filename="include/quester.h" />
 		<Unit filename="include/reader.h" />
 		<Unit filename="include/stopwatch.h" />
+		<Unit filename="include/trie_tree.h" />
 		<Unit filename="include/types.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/indexer.cpp" />

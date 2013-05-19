@@ -6,6 +6,7 @@
 #include <boost/filesystem/fstream.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/bind.hpp>
+#include <boost/foreach.hpp>
 
 using namespace boost::algorithm;
 
@@ -23,6 +24,22 @@ quester::~quester()
 bool quester::is_excluded(string word)
 {
     return stopwords.count(word);
+}
+
+/**< select best result of each files and sort all of them by ranker */
+void reduce_and_sort(query &result,unordered_map<string,int> &ranker)
+{
+    vector<word_position*> vals;
+
+    result.for_each([&vals](word_position* p) mutable
+    {
+        if(none_of(vals.begin(),vals.end(),[p](word_position* pos){return pos->document==p->document;}))
+         vals.push_back(p);
+    });
+
+    sort(vals.begin(),vals.end(),[&ranker](word_position *i,word_position *j){return ranker[i->document]>ranker[j->document];});
+
+    result=query(vals,result.get_query_words());
 }
 
 void quester::execute(string queryString)
@@ -43,6 +60,8 @@ void quester::execute(string queryString)
     s>>temp;
 
     query result=create_query(temp);
+    vector<string> keywords;
+    keywords.push_back(temp);
     while (s>>temp)
     {
         if (temp=="AND")
@@ -58,8 +77,21 @@ void quester::execute(string queryString)
         else
         {
             result=m_operator.operator_and(result,create_query(temp));
+            keywords.push_back(temp);
         }
     }
+
+    //rank the files
+    unordered_map<string,int> file_rank;
+    BOOST_FOREACH(string f,m_indexer.get_documents())
+    {
+        int ranking=0;
+        BOOST_FOREACH(string w,keywords)
+            ranking+=word_statistics[f][w];
+
+        file_rank[f]=ranking;
+    }
+    reduce_and_sort(result,file_rank);
 
     watch.stop();
     m_printer.printAll(result);
@@ -113,6 +145,7 @@ void quester::read_single_document(path filename)
 
 void quester::process(token &t)
 {
+    word_statistics[t.pos->document][t.word]++;
     //process plural forms ,etc....
 }
 
